@@ -17,7 +17,7 @@ settings.configure(
     EMAIL_HOST='smtp.gmail.com',
     EMAIL_PORT=25,
     EMAIL_HOST_USER='barboza.rafael.p@gmail.com',
-    EMAIL_HOST_PASSWORD='1143359380',
+    EMAIL_HOST_PASSWORD='',
     EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend',
 )
 
