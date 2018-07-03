@@ -1,5 +1,7 @@
 from __future__ import unicode_literals, absolute_import
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
+import shutil
 from .models import Archive
 from celeyRa import celery_app as app
 import xlsxwriter
@@ -17,8 +19,9 @@ def tarea(f):
             user.__setattr__(usuario[0][data].value, usuario[filausuario][data].value)
         user.save()
 
+
 @app.task
-def addXml():
+def addXlsx():
     cont=0
     workbook = xlsxwriter.Workbook('Activos.xlsx')
     #print("archivo es",workbook.filehandle)
@@ -34,12 +37,16 @@ def addXml():
     workbook.close()
 
 
-def sendEmail(subject, to, from_email, msj,file):
-    pass
-    """
-    print("enviando mensaje")
-    message(subject,to,from_email,msj,file)
-"""
+@app.task
+def sendEmail(subject, to, msj,file):
+    e = EmailMessage()
+    e.subject = subject
+    e.to = [to]
+    e.body = msj
+    e.attach_file(file)
+    e.send()
 
 
-
+@app.task
+def deleteXlsx(path):
+    shutil.rmtree(path)

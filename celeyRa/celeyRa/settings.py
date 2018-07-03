@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.conf import settings
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -27,6 +29,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+"""EMAIL_USE_TLS = True
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 587
+DEFAULT_HOST_USER = 'barboza.rafael.p@gmail.com'
+EMAIL_HOST_PASSWORD = '1143359380'
+"""
+
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=25
+EMAIL_HOST_USER='barboza.rafael.p@gmail.com'
+EMAIL_HOST_PASSWORD='1143359380'
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 
 # Application definition
 

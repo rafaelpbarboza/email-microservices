@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+import xlrd
+import xlsxwriter
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView
-from tasks import addXml
+
+from tasks import addXlsx,deleteXlsx
 
 # Create your views here.
 from .forms import FormLector
@@ -18,7 +20,9 @@ class Reader (CreateView):
     success_url='/'
 
 def crear(request):
-    addXml.delay()
+    #sendEmail.delay('prueba','barboza.rafael.p@gmail.com','esto es una prueba','Activos.xlsx')
+    #addXlsx.delay()
+    deleteXlsx.delay('Activos.xlsx')
     return HttpResponse('hola')
 
 
