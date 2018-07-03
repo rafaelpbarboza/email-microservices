@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-from .views import Reader
+from .views import Reader, crear
 
 urlpatterns = [
-    url(r'^', Reader.as_view(), name='home')
+    #url(r'^', Reader.as_view(), name='home'),
+    url(r'^crear/', crear, name='crear')
 ]
