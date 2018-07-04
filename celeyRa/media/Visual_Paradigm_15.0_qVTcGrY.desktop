@@ -1,7 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name=Visual_Paradigm_15.0
-Exec="/home/rafael/Visual_Paradigm_CE_15.0/bin/Visual_Paradigm"
-Icon=/home/rafael/Visual_Paradigm_CE_15.0/.install4j/Visual_Paradigm.png
-Categories=Application;

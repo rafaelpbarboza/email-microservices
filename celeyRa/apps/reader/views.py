@@ -2,11 +2,12 @@
 from __future__ import unicode_literals
 import xlrd
 import xlsxwriter
+from celery import chain
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView
 
-from tasks import addXlsx,deleteXlsx
+from tasks import addXlsx, deleteXlsx, sendEmail
 
 # Create your views here.
 from .forms import FormLector
@@ -20,9 +21,9 @@ class Reader (CreateView):
     success_url='/'
 
 def crear(request):
-    #sendEmail.delay('prueba','barboza.rafael.p@gmail.com','esto es una prueba','Activos.xlsx')
+    #sendEmail.delay()
     #addXlsx.delay()
-    deleteXlsx.delay('Activos.xlsx')
+    chain(addXlsx.s(), sendEmail.s('prueba','barboza.rafael.p@gmail.com','esto es una prueba','Activos.xlsx'), deleteXlsx.s('Activos.xlsx'))()
     return HttpResponse('hola')
 
 

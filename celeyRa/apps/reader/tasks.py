@@ -1,4 +1,7 @@
 from __future__ import unicode_literals, absolute_import
+
+import os
+
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 import shutil
@@ -49,4 +52,4 @@ def sendEmail(subject, to, msj,file):
 
 @app.task
 def deleteXlsx(path):
-    shutil.rmtree(path)
+    os.remove(path)
